@@ -16,6 +16,40 @@ public class Main {
         main.testRecuOptimizeQuickSort();
         // 循环版优化快速排序
         main.testLoopOptimizeQuickSort();
+        // 基础插入排序
+        main.testInsertionSort();
+        // 希尔优化插入排序
+        main.testShellInsertionSort();
+    }
+    private void testShellInsertionSort() {
+        // 生成随机数
+        Main main = new Main();
+        int[][] arr = main.produceRandomArr();
+        // 进行排序
+        InsertionSort insertionSort = new InsertionSort();
+        long beginTime = System.nanoTime();
+        for(int i = 0; i < main.testCount; i++) {
+            insertionSort.shellInsertionSort(arr[i]);
+//            System.out.println("排序后：" + Arrays.toString(arr[i]));
+        }
+        long useTime = (System.nanoTime() - beginTime)/main.testCount;
+        double useTimeMs = (double)useTime/1000000;
+        System.out.println("希尔优化插入排序耗时：" + useTimeMs + "ms");
+    }
+    private void testInsertionSort() {
+        // 生成随机数
+        Main main = new Main();
+        int[][] arr = main.produceRandomArr();
+        // 进行排序
+        InsertionSort insertionSort = new InsertionSort();
+        long beginTime = System.nanoTime();
+        for(int i = 0; i < main.testCount; i++) {
+            insertionSort.basicInsertionSort(arr[i]);
+//            System.out.println("排序后：" + Arrays.toString(arr[i]));
+        }
+        long useTime = (System.nanoTime() - beginTime)/main.testCount;
+        double useTimeMs = (double)useTime/1000000;
+        System.out.println("基础插入排序耗时：" + useTimeMs + "ms");
     }
     private void testLoopOptimizeQuickSort() {
         // 生成随机数
