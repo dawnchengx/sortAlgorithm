@@ -7,19 +7,36 @@ public class Main {
     public static void  main(String[] args){
         Main main = new Main();
         // 基础冒泡排序
-        main.testBasicBubbleSort();
+//        main.testBasicBubbleSort();
         // 优化冒泡排序
-        main.testOptimizeBubbleSort();
+//        main.testOptimizeBubbleSort();
         // 基础快速排序
-        main.testBasicQuickSort();
+//        main.testBasicQuickSort();
         // 递归版优化快速排序
-        main.testRecuOptimizeQuickSort();
+//        main.testRecuOptimizeQuickSort();
         // 循环版优化快速排序
-        main.testLoopOptimizeQuickSort();
+//        main.testLoopOptimizeQuickSort();
         // 基础插入排序
-        main.testInsertionSort();
+//        main.testInsertionSort();
         // 希尔优化插入排序
-        main.testShellInsertionSort();
+//        main.testShellInsertionSort();
+        // 选择排序
+        main.testSelectionSort();
+    }
+    private void testSelectionSort() {
+        // 生成随机数
+        Main main = new Main();
+        int[][] arr = main.produceRandomArr();
+        // 进行排序
+        SelectionSort selectionSort = new SelectionSort();
+        long beginTime = System.nanoTime();
+        for(int i = 0; i < main.testCount; i++) {
+            selectionSort.selectionSort(arr[i]);
+//            System.out.println("排序后：" + Arrays.toString(arr[i]));
+        }
+        long useTime = (System.nanoTime() - beginTime)/main.testCount;
+        double useTimeMs = (double)useTime/1000000;
+        System.out.println("选择排序耗时：" + useTimeMs + "ms");
     }
     private void testShellInsertionSort() {
         // 生成随机数
