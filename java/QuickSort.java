@@ -82,7 +82,7 @@ public class QuickSort{
             end = stack.pop();
             start = stack.pop();
             if (start < end){
-                int i = start;
+                // int i = start;
                 base = loopOptimizePartition(arr, start, end);
                 // ----右半边----
                 stack.push(base+1);
