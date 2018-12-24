@@ -40,9 +40,9 @@ public class HeapSort{
         }
     }
     private int left(int i) {
-        return 2*i;
+        return 2*(i+1);
     }
     private int right(int i) {
-        return 2*i + 1;
+        return 2*(i+1) + 1;
     }
 }
