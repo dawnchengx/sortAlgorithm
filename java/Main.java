@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
-    private int randomNum = 10; // 随机数的数量
+    private int randomNum = 5; // 随机数的数量
     private int testCount = 1; // 压测的次数
     public static void  main(String[] args){
         Main main = new Main();
@@ -22,10 +22,65 @@ public class Main {
 //        main.testShellInsertionSort();
         // 选择排序
 //        main.testSelectionSort();
-        // 堆排序
-        main.testHeapSort();
+        // 二叉堆排序
+//        main.testTwoHeapSort();
+        // 多叉堆排序
+//        main.testMutliHeapSort();
+        // 归并排序
+//        main.testMergeHeapSort();
+        // 计数排序
+//        main.testCountingSort();
+        // 基数排序
+         main.testBaseSort();
     }
-    private void testHeapSort() {
+    private void testBaseSort() {
+        // 生成随机数
+        Main main = new Main();
+        int[][] arr = main.produceRandomArr();
+        // 进行排序
+        BaseSort baseSort = new BaseSort();
+        long beginTime = System.nanoTime();
+        for(int i = 0; i < main.testCount; i++) {
+            int[] tempArr = new int[randomNum];
+            baseSort.baseSort(arr[i]);
+            System.out.println("排序后：" + Arrays.toString(tempArr));
+        }
+        long useTime = (System.nanoTime() - beginTime)/main.testCount;
+        double useTimeMs = (double)useTime/1000000;
+        System.out.println("计数排序耗时：" + useTimeMs + "ms");
+    }
+    private void testCountingSort() {
+        // 生成随机数
+        Main main = new Main();
+        int[][] arr = main.produceRandomArr();
+        // 进行排序
+        CountingSort countingSort = new CountingSort();
+        long beginTime = System.nanoTime();
+        for(int i = 0; i < main.testCount; i++) {
+            int[] tempArr = new int[randomNum];
+            countingSort.countingSort(arr[i], tempArr, randomNum);
+//            System.out.println("排序后：" + Arrays.toString(tempArr));
+        }
+        long useTime = (System.nanoTime() - beginTime)/main.testCount;
+        double useTimeMs = (double)useTime/1000000;
+        System.out.println("计数排序耗时：" + useTimeMs + "ms");
+    }
+    private void testMergeHeapSort() {
+        // 生成随机数
+        Main main = new Main();
+        int[][] arr = main.produceRandomArr();
+        // 进行排序
+        MergeSort mergeSort = new MergeSort();
+        long beginTime = System.nanoTime();
+        for(int i = 0; i < main.testCount; i++) {
+            mergeSort.mergeSort(arr[i], 0, arr[i].length-1);
+//            System.out.println("排序后：" + Arrays.toString(arr[i]));
+        }
+        long useTime = (System.nanoTime() - beginTime)/main.testCount;
+        double useTimeMs = (double)useTime/1000000;
+        System.out.println("归并排序耗时：" + useTimeMs + "ms");
+    }
+    private void testMutliHeapSort() {
         // 生成随机数
         Main main = new Main();
         int[][] arr = main.produceRandomArr();
@@ -33,12 +88,27 @@ public class Main {
         HeapSort heapSort = new HeapSort();
         long beginTime = System.nanoTime();
         for(int i = 0; i < main.testCount; i++) {
-            heapSort.heapSort(arr[i]);
-            System.out.println("排序后：" + Arrays.toString(arr[i]));
+            heapSort.mutliHeapSort(arr[i], 3);
+//            System.out.println("排序后：" + Arrays.toString(arr[i]));
         }
         long useTime = (System.nanoTime() - beginTime)/main.testCount;
         double useTimeMs = (double)useTime/1000000;
-        System.out.println("选择排序耗时：" + useTimeMs + "ms");
+        System.out.println("多叉堆排序耗时：" + useTimeMs + "ms");
+    }
+    private void testTwoHeapSort() {
+        // 生成随机数
+        Main main = new Main();
+        int[][] arr = main.produceRandomArr();
+        // 进行排序
+        HeapSort heapSort = new HeapSort();
+        long beginTime = System.nanoTime();
+        for(int i = 0; i < main.testCount; i++) {
+            heapSort.twoHeapSort(arr[i]);
+//            System.out.println("排序后：" + Arrays.toString(arr[i]));
+        }
+        long useTime = (System.nanoTime() - beginTime)/main.testCount;
+        double useTimeMs = (double)useTime/1000000;
+        System.out.println("二叉堆排序耗时：" + useTimeMs + "ms");
     }
     private void testSelectionSort() {
         // 生成随机数
