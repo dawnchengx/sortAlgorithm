@@ -2,36 +2,53 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
-    private int randomNum = 5; // 随机数的数量
-    private int testCount = 1; // 压测的次数
+    private int randomNum = 10000; // 随机数的数量
+    private int testCount = 100; // 压测的次数
     public static void  main(String[] args){
         Main main = new Main();
         // 基础冒泡排序
-//        main.testBasicBubbleSort();
+        main.testBasicBubbleSort();
         // 优化冒泡排序
-//        main.testOptimizeBubbleSort();
+        main.testOptimizeBubbleSort();
         // 基础快速排序
-//        main.testBasicQuickSort();
+        main.testBasicQuickSort();
         // 递归版优化快速排序
-//        main.testRecuOptimizeQuickSort();
+        main.testRecuOptimizeQuickSort();
         // 循环版优化快速排序
-//        main.testLoopOptimizeQuickSort();
+        main.testLoopOptimizeQuickSort();
         // 基础插入排序
-//        main.testInsertionSort();
+        main.testInsertionSort();
         // 希尔优化插入排序
-//        main.testShellInsertionSort();
+        main.testShellInsertionSort();
         // 选择排序
-//        main.testSelectionSort();
+        main.testSelectionSort();
         // 二叉堆排序
-//        main.testTwoHeapSort();
+        main.testTwoHeapSort();
         // 多叉堆排序
-//        main.testMutliHeapSort();
+        main.testMutliHeapSort();
         // 归并排序
-//        main.testMergeHeapSort();
+        main.testMergeHeapSort();
         // 计数排序
-//        main.testCountingSort();
+        main.testCountingSort();
         // 基数排序
          main.testBaseSort();
+        // 桶排序
+        main.testBucketSort();
+    }
+    private void testBucketSort() {
+        // 生成随机数
+        Main main = new Main();
+        int[][] arr = main.produceRandomArr();
+        // 进行排序
+        BucketSort bucketSort = new BucketSort();
+        long beginTime = System.nanoTime();
+        for(int i = 0; i < main.testCount; i++) {
+            bucketSort.bucketSort(arr[i]);
+//            System.out.println("排序后：" + Arrays.toString(arr[i]));
+        }
+        long useTime = (System.nanoTime() - beginTime)/main.testCount;
+        double useTimeMs = (double)useTime/1000000;
+        System.out.println("桶排序耗时：" + useTimeMs + "ms");
     }
     private void testBaseSort() {
         // 生成随机数
@@ -41,13 +58,12 @@ public class Main {
         BaseSort baseSort = new BaseSort();
         long beginTime = System.nanoTime();
         for(int i = 0; i < main.testCount; i++) {
-            int[] tempArr = new int[randomNum];
             baseSort.baseSort(arr[i]);
-            System.out.println("排序后：" + Arrays.toString(tempArr));
+//            System.out.println("排序后：" + Arrays.toString(arr[i]));
         }
         long useTime = (System.nanoTime() - beginTime)/main.testCount;
         double useTimeMs = (double)useTime/1000000;
-        System.out.println("计数排序耗时：" + useTimeMs + "ms");
+        System.out.println("基数排序耗时：" + useTimeMs + "ms");
     }
     private void testCountingSort() {
         // 生成随机数
@@ -236,7 +252,7 @@ public class Main {
         int[][] arr = new int[main.testCount][randomNum];
         for(int i = 0; i < main.testCount; i++) {
             arr[i] = main.produceRandomNum(randomNum);
-            System.out.println("排序前：" + Arrays.toString(arr[i]));
+//            System.out.println("排序前：" + Arrays.toString(arr[i]));
         }
         return arr;
     }
